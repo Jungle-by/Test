@@ -117,8 +117,8 @@ def main():
 
     print(f"local_mac={LOCAL_MAC.hex()}")
 
-    payload_arr = create_payload_array(server_mac, LOCAL_MAC, index)
-    if not verify_do_check_client(payload_arr, LOCAL_MAC, index, server_mac):
+    payload_arr = create_payload_array(LOCAL_MAC, server_mac, index)
+    if not verify_do_check_client(payload_arr, server_mac, index, LOCAL_MAC):
         print("we are sad :(")
 
     payload = f"SendInfo.gch?info={len(payload_arr)}|{b''.join(map(lambda x: x.to_bytes(4, 'little'), payload_arr)).decode('utf-8')}"
